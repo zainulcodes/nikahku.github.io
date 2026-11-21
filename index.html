@@ -199,6 +199,44 @@
         height: 30px;
         fill: white;
     }
+
+    /* Guest Invitation Information */
+    #weiGuestInfo {
+        position: absolute;
+        top: 72%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        text-align: center;
+        z-index: 2;
+        color: rgba(140, 100, 60, 0.85);
+    }
+
+    .wei-guest-greeting {
+        font-family: "NewFonts", Arial, sans-serif;
+        font-size: 22px;
+        letter-spacing: 0.2em;
+        margin-bottom: 6px;
+        vertical-align: middle;
+        color: #a67d2b;
+        /* font-size: 41px; */
+        /* font-family: "NewFonts", Arial, sans-serif; */
+        font-weight: 300;
+    }
+
+    .wei-guest-name {
+        font-family: "NewFonts", Arial, sans-serif;
+        font-size: 20px;
+        letter-spacing: 0.08em;
+        color: #805020;
+        margin-bottom: 12px;
+    }
+
+    .wei-guest-message {
+        font-family: Georgia, serif;
+        font-size: 13px;
+        line-height: 1.7;
+    }
 </style>
 
 <body class="t-body wedding-locked" style="margin: 0">
@@ -220,11 +258,26 @@
                         </audio>
                         <!-- Envelope overlay -->
                         <div id="weiOverlay">
-                            <img alt="Open your invitation" draggable="false" id="weiImg"
-                                src="assets/image/a&z.png" />
+                            <img alt="Open your invitation" draggable="false" id="weiImg" src="assets/image/a&z.png" />
                             <div id="weiTapWrap">
                                 <div class="wei-chevron"></div>
                                 <div id="weiTapLabel">Tap to open</div>
+                            </div>
+                            <!-- Guest Invitation Information -->
+                            <div id="weiGuestInfo">
+                                <div class="wei-guest-greeting">
+                                    Kepada Yth,
+                                </div>
+
+                                <div class="wei-guest-name" id="weiGuestName">
+                                    Tamu Undangan
+                                </div>
+
+                                <div class="wei-guest-message">
+                                    <em>Kami mengundang Bapak/Ibu/Saudara/i</em>
+                                    <br>
+                                    <em>untuk menyaksikan hari bahagia kami</em>
+                                </div>
                             </div>
                         </div>
                         <!-- Video -->
@@ -1042,7 +1095,7 @@
                 #rec4227041103 .tn-elem[data-elem-id="1780748008617000003"] .tn-atom {
                     vertical-align: middle;
                     color: #a67d2b;
-                    font-size: 29px;
+                    font-size: 20px;
                     font-family: "NewFonts", Arial, sans-serif;
                     line-height: 1.05;
                     font-weight: 300;
@@ -1611,8 +1664,8 @@
                             Dua Jiwa
                             <br />
                             Satu Takdir
-                            <!-- <br />
-                            Kisah Seumur Hidup yang Telah Allah Tuliskan. -->
+                            <br />
+                            Kisah Seumur Hidup yang Telah Allah Tuliskan.
                         </div>
                     </div>
                     <div class="t396__elem tn-elem tn-elem__42270411031780748008617000005 t-animate"
@@ -1837,7 +1890,7 @@
                 #rec2487446093 .tn-elem[data-elem-id="1771277026942000001"] .tn-atom {
                     vertical-align: middle;
                     color: #a67d2b;
-                    font-size: 41px;
+                    font-size: 35px;
                     font-family: "NewFonts", Arial, sans-serif;
                     line-height: 1.55;
                     font-weight: 300;
@@ -8270,6 +8323,21 @@
                     alert('Gagal menyalin nomor rekening. Silakan salin secara manual.');
                 }
             });
+        });
+        // nama tamu
+        document.addEventListener("DOMContentLoaded", function () {
+            const params = new URLSearchParams(window.location.search);
+            const guestName = params.get("to");
+
+            const guestElement = document.getElementById("weiGuestName");
+
+            if (guestName && guestElement) {
+                const formattedName = guestName
+                    .replace(/-/g, " ")
+                    .replace(/\b\w/g, char => char.toUpperCase());
+
+                guestElement.textContent = formattedName;
+            }
         });
     </script>
 </body>
